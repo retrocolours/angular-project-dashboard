@@ -1,0 +1,24 @@
+<div class="post-detail-container">
+  <div class="post-detail-card" *ngIf="post$ | async as post">
+    <h2 class="post-title">{{ post.title }}</h2>
+
+    <div class="post-details-label"></div>
+
+    <button (click)="toggleFavorite(post)" class="favorite-btn">
+      <span>★</span>
+      {{
+        favoritesService.isFavorite(post.id)
+          ? "Remove from Favorites"
+          : "Add to Favorites"
+      }}
+    </button>
+
+    <p class="post-body">{{ post.body }}</p>
+
+    <div class="tag-list">
+      <span class="tag" *ngFor="let tag of post.tags">{{ tag }}</span>
+    </div>
+
+    <a routerLink="/" class="back-btn">Back to Posts</a>
+  </div>
+</div>

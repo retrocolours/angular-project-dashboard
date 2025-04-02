@@ -1,0 +1,23 @@
+<h2 class="title">My Favorite Posts</h2>
+
+<div *ngIf="favoritesService.getFavorites().length === 0" class="empty-state">
+  <p>You didn't add any favorites yet.</p>
+</div>
+
+<div *ngIf="favoritesService.getFavorites().length > 0" class="favorites-grid">
+  <div
+    *ngFor="let post of favoritesService.getFavorites()"
+    class="favorite-card"
+  >
+    <h3 class="post-title">{{ post.title }}</h3>
+    <p class="post-body">{{ post.body | slice : 0 : 100 }}...</p>
+
+    <div class="post-actions">
+      <button (click)="removeFavorite(post.id)" class="remove-btn">
+        Remove from Favorites
+      </button>
+    </div>
+  </div>
+</div>
+
+<a routerLink="/" class="back-btn">Back to Home</a>
